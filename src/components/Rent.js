@@ -2,50 +2,52 @@ import React from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux' 
 import {mostPopularData} from '../data/data'
+import { DateRangePicker } from 'react-dates';
+import moment from 'moment';
+
 class Rent extends React.Component {
     constructor(props){
         super(props);
                  
 
         this.state={
-            days: 1,
+            days: 0,
             price: 0,
             discount: 0,
             discountsVisible: false,
+            endDate: moment().add(1, 'days'),
+            startDate: moment(),
+            limitStart: moment(),
+            limitEnd: moment().add(60, 'days')
         }
+
+        this.closeModal=this.closeModal.bind(this);
     }
 
     setPrice(days){
-        const daysNum = parseInt(days)
-
-        if(!isNaN(days) && !days.includes('.') && ((daysNum<61 && daysNum>=1) || days==='')){
-            // 1-3 4-7 8-14 15-30 31-60
-            // 0%  15% 30%  45%   60%
-            let discount;
-            let price;
-            if(days!==''){
-                if(days>=31){
-                    discount = 0.6
-                }else if(days>=15){
-                    discount = 0.45
-                }else if(days>=8){
-                    discount = 0.3
-                }else if(days>=4){
-                    discount = 0.15
-                }else{
-                    discount = 0
-                }
-                let basis = days*this.props.car.info.priceForDay;
-                price = basis - basis*discount;
-            }
-
-            this.setState((state) => ({
-                days,
-                discount: discount ? discount : 0,
-                price: price ? parseInt(price) : 0,
-            }))
-
+        // 1-3 4-7 8-14 15-30 31-60
+        // 0%  15% 30%  45%   60%
+        let discount;
+        if(days>=31){
+            discount = 0.6
+        }else if(days>=15){
+            discount = 0.45
+        }else if(days>=8){
+            discount = 0.3
+        }else if(days>=4){
+            discount = 0.15
+        }else{
+            discount = 0
         }
+
+        let basis = days*this.props.car.info.priceForDay;
+        let price = basis - basis*discount;
+
+        this.setState((state) => ({
+            discount,
+            price: parseInt(price),
+        }))
+
     }
 
     toggleDiscounts(){
@@ -54,12 +56,43 @@ class Rent extends React.Component {
         }))
     }
 
-    afterOpenModal(){
-        console.log('x')
+    setDates(startDate, endDate){
+        this.setState({startDate, endDate})
+        
+        if((startDate && endDate)){
+            let duration = moment.duration(endDate.diff(startDate));
+            this.setPrice(parseInt(duration.asDays()));
+        }else{
+            this.setState((state) => ({
+                discount: 0,
+                price: 0,
+            }))
+        }
+    }
 
+    isOutsideRange(day){
+        if (this.state.focusedInput === 'endDate') {
+            return moment.max(day, this.state.limitEnd).format()===day.format() || moment.min(day, this.state.limitStart).format()===day.format()
+        }else{
+            return moment.max(day, this.state.limitEnd).format()===day.format() || moment.min(day, this.state.limitStart).format()===day.format()
+
+        }
+    }
+
+    closeModal(){
+        console.log(this.state.focusedInput)
+        if(!this.state.focusedInput){
+            this.props.closeModal()
+        }
+    }
+
+    onAfterOpen(){
         this.setState(() => ({
-            price: this.props.car.info.priceForDay
+            price: this.props.car.info.priceForDay,
+            endDate: moment().add(1, 'days'),
+            startDate: moment(),        
         }))
+
     }
 
     render(){
@@ -67,12 +100,12 @@ class Rent extends React.Component {
             <div>
                 <Modal
                     isOpen={this.props.modalIsOpen}
-                    onRequestClose={this.props.closeModal}
+                    onRequestClose={this.closeModal}
                     contentLabel="Rent car"
-                    onAfterOpen={() => this.afterOpenModal()}
                     className="rent__content"
                     style={{content: {background: `url(${this.props.car.image}) center/cover`}, overlay: {zIndex: '100', background: 'rgba(0,0,0,0.7',
                     display: 'flex', justifyContent: 'center'}}}
+                    onAfterOpen={() => this.onAfterOpen()}
                 >
                         <div className="rent__item rent__item--left">
                             <h2 className="rent__title">{this.props.car.name}</h2>
@@ -89,9 +122,21 @@ class Rent extends React.Component {
                         </div>
                         <div className="rent__item rent__item--right">
                             <div className="rent__price">
-                                <span>{`Price is: ${this.state.price}$`}</span>
-                                <label><span>How much days of renting</span>
-                                    <input className="input" type="text" value={this.state.days} onChange={(e) => this.setPrice(e.target.value)}/>
+                                <span className="rent__price__header"> {`Price is: ${this.state.price}$`}</span>
+                                <label className="rent__price__label"><span>Set range of days</span>
+                                <DateRangePicker 
+                                    startDate={this.state.startDate}
+                                    endDate={this.state.endDate}
+                                    onDatesChange={({startDate, endDate}) => this.setDates(startDate, endDate)}
+                                    onFocusChange={focusedInput => this.setState({focusedInput})}
+                                    focusedInput={this.state.focusedInput}
+                                    isOutsideRange={(day) => this.isOutsideRange(day)}
+                                    endDateId='3123'
+                                    startDateId='3623'
+                                    small={true}
+                                    //numberOfMonths={2}
+                                    //orientation='vertical'
+                                />
                                 </label>
                                 <div className="rent__price__discount">
                                     {`Your discount: ${this.state.discount*100}%`}

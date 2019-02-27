@@ -28,7 +28,7 @@
     "normalize.css": "7.0.0",
     "react": "^16.8.3",
     "react-addons-shallow-compare": "15.6.0",
-    "react-dates": "12.3.0",
+    "react-dates": "^19.0.4",
     "react-dom": "^16.8.3",
     "react-modal": "2.2.2",
     "react-redux": "^6.0.1",
