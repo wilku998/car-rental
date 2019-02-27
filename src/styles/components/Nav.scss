@@ -1,0 +1,21 @@
+.nav{
+    width: 100%;
+    color: var(--color-grey-light-2);
+    z-index: 10;
+    border-bottom: var(--line);
+    font-size: 1.8rem;
+    opacity: .9;
+    &__list{
+        display: flex;
+        list-style: none;
+        padding: .5rem 0;
+        font-weight: 300;
+        & li {
+            padding: 0 3rem;
+            cursor: pointer;
+            &:not(:last-child){
+                border-right: var(--line);
+            }
+        }
+    }
+}

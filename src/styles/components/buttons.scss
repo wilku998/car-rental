@@ -1,0 +1,39 @@
+.button-1{
+    background: none;
+    border: var(--line);
+    padding: .5rem 3rem;
+    position: relative;
+    color: var(--color-grey-light-2);
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: all .15s;
+
+    &--dark{
+        color: var(--color-grey-dark-1);
+        border: var(--line-dark);
+    }
+    &__text{
+        position: relative;
+        z-index: 2;
+    }
+    &:focus{
+        outline:none;
+    }
+
+      
+    &:before {
+        content: "";
+        position: absolute;
+        background-color: rgba(#f4f2f2, .15);
+        right: 100%;
+        top: 0%;
+        height: 100%;
+        width: 100%;
+        -webkit-transition: right 0.15s ease-in;
+    }
+    
+    &:hover:before {
+        right: 0;
+    }
+
+}
