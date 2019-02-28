@@ -65,10 +65,18 @@ button:disabled {
 .input{
   font-size: 1.2rem;
   padding: .3rem 1rem;
-  background: var(--color-grey-light-2);
+  background: var(--color-grey-light-1);
   border-radius: .5rem;
   border: var(--line-dark);
 
+  &--valid{
+    background-color: rgba(var(--color-green), 0.2);
+
+  }
+
+  &--invalid{
+    background-color: rgba(var(--color-red), 0.2);
+  }
   &:focus{
     outline: none;
   }

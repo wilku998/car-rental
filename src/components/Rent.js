@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {mostPopularData} from '../data/data'
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
+import isMobilePhone from 'validator/lib/isMobilePhone';
 
 class Rent extends React.Component {
     constructor(props){
@@ -18,7 +19,31 @@ class Rent extends React.Component {
             endDate: moment().add(1, 'days'),
             startDate: moment(),
             limitStart: moment(),
-            limitEnd: moment().add(60, 'days')
+            limitEnd: moment().add(60, 'days'),
+            submited: false,
+            invalidInfo: '',
+            form: {
+                name: {
+                    value: '',
+                    valid: false
+                },
+                surname: {
+                    value: '',
+                    valid: false
+                },
+                country: {
+                    value: '',
+                    valid: false
+                },
+                city: {
+                    value: '',
+                    valid: false
+                },
+                telephone: {
+                    value: '',
+                    valid: false
+                },
+            }
         }
 
         this.closeModal=this.closeModal.bind(this);
@@ -90,9 +115,50 @@ class Rent extends React.Component {
         this.setState(() => ({
             price: this.props.car.info.priceForDay,
             endDate: moment().add(1, 'days'),
-            startDate: moment(),        
+            startDate: moment(),
+            discountsVisible: false,
+            submited: false,
+            invalidInfo: ''
         }))
 
+    }
+
+    setProperty(property, value){
+        this.setState((state) => ({
+            form: {
+                ...state.form,
+                [property]: {
+                    value,
+                    valid: property==='telephone' ? isMobilePhone(value) : value.length<=20 && value.length>=3
+                }
+            }})
+        )
+    }
+
+    onSubmit(event){
+        event.preventDefault();
+        let invalidInfo = '';
+        if(!this.state.submited){
+            let validation=true;
+            Object.keys(this.state.form).forEach(key => {
+                if(!this.state.form[key].valid){
+                    validation=false;
+                }
+                if(this.state.form[key].value===''){
+                    invalidInfo = `${key} is required`
+                }
+            })
+            
+            if(this.state.price<1){
+                invalidInfo = 'Set correctly range of days!';
+                validation = false
+            }
+
+            this.setState(() => ({
+                submited: validation,
+                invalidInfo
+             }))
+        }
     }
 
     render(){
@@ -103,10 +169,11 @@ class Rent extends React.Component {
                     onRequestClose={this.closeModal}
                     contentLabel="Rent car"
                     className="rent__content"
-                    style={{content: {background: `url(${this.props.car.image}) center/cover`}, overlay: {zIndex: '100', background: 'rgba(0,0,0,0.7',
-                    display: 'flex', justifyContent: 'center'}}}
+                    style={{content: {background: `url(${this.props.car.image}) center/cover`}, overlay: {zIndex: '100', background: 'rgba(0,0,0,0.7)',
+                    display: 'flex', justifyContent: 'center', animation: 'opacity .5s'}}}
                     onAfterOpen={() => this.onAfterOpen()}
                 >
+                <i className="icon-cancel rent__cancel" onClick={() => this.closeModal()}/>
                         <div className="rent__item rent__item--left">
                             <h2 className="rent__title">{this.props.car.name}</h2>
                             <span className="rent__version">{this.props.car.version}</span>
@@ -155,23 +222,29 @@ class Rent extends React.Component {
                                 </div>
                                 )}
                             </div>
-                            <form className="rent__form">
-                                <label>
-                                    <span>Name</span>
-                                    <input className="input" type="text" /></label>
-                                <label>
-                                    <span>Surname</span>
-                                    <input className="input" type="text" /></label>
-                                <label>
-                                    <span>Country</span>
-                                    <input className="input" type="text" /></label>
-                                <label>
-                                    <span>City</span>
-                                    <input className="input" type="text" /></label>
-                                <label>
-                                    <span>Telephone</span>
-                                    <input className="input" type="text" /></label>
-                                <button className="button-1 button-1--dark rent__form__btn">Rent</button>
+                            <form className="rent__form" onSubmit={e => this.onSubmit(e)}>
+                                {Object.keys(this.state.form).map(key => (
+                                    <label key={key}>
+                                        <span>{key}</span>
+                                        <input className={`input ${this.state.form[key].value !== '' ? this.state.form[key].valid ? 'input--valid' : 'input--invalid' : ''}`}
+                                            value={this.state.form[key].value} 
+                                            onChange={(e) => this.setProperty(key, e.target.value)} type="text" 
+                                        />
+                                    </label>
+                                ))}
+                                
+                                <div className="rent__footer">
+                                    {
+                                        !this.state.submited ?
+                                        <button className="button-1 button-1--small button-1--dark rent__form__btn">Rent</button>
+                                            :                                        
+                                        <span className="rent__info rent__info--submited">
+                                            Form sent. Our consultant will contact you within 24 hours.
+                                        </span>
+                                    }
+                                    {this.state.invalidInfo!=='' && <span className="rent__info rent__info--invalid">{this.state.invalidInfo}</span>}
+                                </div>
+
                             </form>
                         </div>
                 </Modal>

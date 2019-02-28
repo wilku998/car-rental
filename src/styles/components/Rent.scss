@@ -6,6 +6,7 @@
         display: flex;
         border: var(--line-dark);
         position: absolute;
+        animation: opacity .5s;
         &::after{
             content: "";
             position: absolute;
@@ -19,6 +20,15 @@
         }
     }
 
+    &__cancel{
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        color: var(--color-grey-dark-3);
+        z-index: 101;
+        cursor: pointer;
+        line-height: 1;
+    }
     &__title{
         text-align: center;
         font-weight: 400;
@@ -66,30 +76,36 @@
                 margin-right: 1rem;
             }
         }
-
-        &__btn{
-            margin-top: 2rem;
-            align-self: flex-start;
-        }
     }
 
     &__list{
         & >li{
+            
             display: flex;
-            padding: 1.4rem 0;
-            font-size: 1.2rem;
+            padding: 2rem 0;
             &:not(:last-child){
-                border-bottom: var(--line-dark) !important;
+                border-bottom: var(--line-dark);
             }
         }
         &:first-child{
             margin-right: 2rem;
         }
+
+        &--small{
+            animation: showMore .5s;
+            & > li{
+                font-size: 1.2rem;
+                padding: .6rem 0;
+                &:not(:last-child){
+                    border-bottom: 1px solid var(--color-grey-light-5);                    
+                }
+            }
+        }
+
         &-container{
             margin-top: auto;
             margin-bottom: auto;
             display: flex;
-
         }
     }
 
@@ -108,6 +124,10 @@
             font-size: 1.4rem;
             display: flex;
             align-items: center;
+
+            & > span{
+                margin-bottom: .5rem;
+            }
         }
 
         &__discount{
@@ -141,5 +161,27 @@
         display: flex;
         justify-content: space-between;
         border-bottom: var(--line-dark);
+    }
+
+    &__info{
+        font-size: 1.2rem;
+
+        &--submited{
+            margin-top: 1rem;
+            color: rgba(var(--color-green), 1);
+            border-bottom: 1px solid rgba(var(--color-green), 1);
+        }
+
+        &--invalid{
+            color: rgba(var(--color-red), 1);
+            border-bottom: 1px solid rgba(var(--color-red), 1);
+        }
+    }
+
+    &__footer{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 }

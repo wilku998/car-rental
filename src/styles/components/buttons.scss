@@ -9,13 +9,19 @@
     transition: all .15s;
 
     &--dark{
-        color: var(--color-grey-dark-1);
+        color: var(--color-grey-dark-2);
         border: var(--line-dark);
     }
+
+    &--small{
+        padding: .3rem 1.5rem;
+    }
+
     &__text{
         position: relative;
         z-index: 2;
     }
+
     &:focus{
         outline:none;
     }
