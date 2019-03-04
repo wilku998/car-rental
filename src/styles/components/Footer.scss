@@ -1,5 +1,20 @@
 .footer{
-    height: 20rem;
-    background-color: black;
-    margin-top: 15rem;
+    padding: 10rem 0 7rem 0; 
+    background-color: var(--color-grey-dark-1);
+    margin-top: 20rem;
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+    color: var(--color-grey-light-1);;
+
+    &__content{
+        display: flex;
+        justify-content: space-between;
+
+        &__item{
+            padding-top: 1rem;
+            width: 45%;
+            font-size: 1.4rem;
+            text-align: center;
+            border-top: 1px solid var(--color-grey-light-1);
+        }
+    }
 }

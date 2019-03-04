@@ -8,10 +8,7 @@
     overflow: hidden;
     transition: all .15s;
 
-    &--dark{
-        color: var(--color-grey-dark-2);
-        border: var(--line-dark);
-    }
+
 
     &--small{
         padding: .3rem 1.5rem;
@@ -42,4 +39,12 @@
         right: 0;
     }
 
+    &--dark{
+        color: var(--color-grey-dark-2);
+        border: var(--line-dark);
+
+        &::before{
+            background-color: rgba(102,102,102, .1);
+        }
+    }
 }

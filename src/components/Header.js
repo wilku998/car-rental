@@ -8,7 +8,7 @@ export const Header = ({ startLogout }) => (
     <div className="header__content">
       <h2>CarRental.</h2>
       <span>From the passion of motoring</span>
-      <button className="button-1">View offer</button>
+      <button className="button-1" onClick={() => document.querySelector('.all-cars').scrollIntoView()}>View offer</button>
     </div>
   </header>
 );
