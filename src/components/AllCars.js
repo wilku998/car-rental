@@ -34,11 +34,11 @@ class AllCars extends React.Component{
 
     }
 
-    renderItems(arr, seeMore, hideAnimation){
+    renderItems(arr, more, hideAnimation){
         return (
-            <div className={`all-cars__content ${seeMore ? `all-cars__content--more ${hideAnimation ? 'all-cars__content--more--hide' : ''}` : ''}`}>
+            <div className={`all-cars__content ${more ? `all-cars__content--more ${hideAnimation ? 'all-cars__content--more--hide' : ''}` : ''}`}>
                 {arr.map((e, i) => (
-                    <div key={i} className="all-cars__item">
+                    <div key={i} className="all-cars__item" data-aos={`${!more ? 'zoom-in' : ''}`}>
                         <div className="all-cars__item__top" style={{background: `url(${e.image}) center/cover`}}>
                         </div>
                         <h3 className="all-cars__item__title">{e.name}</h3>
@@ -65,8 +65,8 @@ class AllCars extends React.Component{
 
                 {this.state.allVisible && this.renderItems(allCarsData.slice(3), true, this.state.hideAnimation)}
 
-                {!this.state.hideAnimation && <button className="all-cars__button button-1 button-1--dark" onClick={() => this.toggleAllVisble(!this.state.allVisible)}>
-                    {this.state.allVisible ? 'hide' : 'see more'}
+                {!this.state.hideAnimation && <button className="all-cars__button button-2" onClick={() => this.toggleAllVisble(!this.state.allVisible)}>
+                    {this.state.allVisible ? 'Hide' : 'See more'}
                 </button>}
             </div>
         )

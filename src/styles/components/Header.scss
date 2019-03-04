@@ -25,6 +25,7 @@
             font-weight: 400;
             opacity: .5;
             line-height: 1;
+            animation: fade-header-title 1.5s;
         }
 
         & span{
@@ -32,6 +33,7 @@
             letter-spacing: .3rem;
             margin-bottom: 4rem;
             opacity: .7;
+            animation: fade-header-span 1.5s;
         }
 
         & button{

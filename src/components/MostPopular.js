@@ -1,21 +1,21 @@
 import React from 'react';
 import MostPopularItem from './MostPopularItem';
 import {mostPopularData} from '../data/data'
-/*
+
 document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
-    //progress = (document.body.scrollTop / ( document.body.scrollHeight - window.innerHeight ) ) * 100;
   
-    console.log(window.pageYOffset);
+    //console.log(document.documentElement.scrollTop);
   });
 });
-*/
+
 class MostPopular extends React.Component{
   constructor(props){
     super(props)
     this.state = {
       compHeight: 0,
-      pos: 2,
+      pos: 1,
+      animated: false
     }
   }
 
@@ -30,14 +30,32 @@ class MostPopular extends React.Component{
   }
 
   componentDidMount(){
+    const containerHeight = this.refs.container.offsetHeight;
+    window.addEventListener('scroll', () => {
+      let windowPosition = this.refs.container.getBoundingClientRect().y;
+      //console.log(windowPosition)
+      if(windowPosition< containerHeight/2 && !this.state.animated){
+        this.setState(() => ({
+          pos: 2,
+          animated: true
+        }))
+      }else if(this.state.animated && !(windowPosition - containerHeight < 0)){
+        this.setState(() => ({
+          pos: 1,
+          animated: false
+        }))
+      }
+  
+    });
+
     this.setState(() => ({
-      compHeight: this.refs.component.scrollHeight/3
+      compHeight: this.refs.component.scrollHeight/3,
     }))
   }
 
   render(){
     return (
-      <section className="most-popular-container">
+      <section className="most-popular-container" ref='container'>
         <h1 className="title most-popular__title">Most popular cars</h1>
           <div className="most-popular" ref='component' onScroll={(e) => this.scrollEvent(e)}>
             <div className="most-popular__pos">
