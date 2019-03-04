@@ -1,9 +1,11 @@
 import React from 'react';
-import MostPopular from '../components/MostPopular';
-import Header from '../components/Header'
-import About from '../components/About'
-import AllCars from '../components/AllCars'
-import Rent from '../components/Rent'
+import MostPopular from './MostPopular';
+import Header from './Header'
+import About from './About'
+import AllCars from './AllCars'
+import Rent from './Rent'
+import Contact from './Contact'
+import Footer from './Footer'
 
 const Dashbaord = (props) => (
     <div>
@@ -12,7 +14,8 @@ const Dashbaord = (props) => (
         <About />
         <MostPopular />
         <AllCars />
-        <div className="fake"></div>
+        <Contact />
+        <Footer />
     </div>
 )
 

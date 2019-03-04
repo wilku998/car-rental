@@ -1,6 +1,6 @@
 import React from 'react'
 import {allCarsData} from '../data/data';
-
+import {connect} from 'react-redux'
 class AllCars extends React.Component{
     constructor(props){
         super(props);
@@ -43,13 +43,14 @@ class AllCars extends React.Component{
                         </div>
                         <h3 className="all-cars__item__title">{e.name}</h3>
                         <ul className="all-cars__item__list">
-                        <li>Engine: {e.engine}</li>
-                        <li>Year of production: {e.yearOfProduction}</li>
-                        <li>Maxiumum speed: {e.maximumSpeed}</li>
-                        <li>Type of drive: {e.typeOfDrive}</li>
+                            <li>Price for a day: {e.info.priceForDay}$</li>
+                            <li>Engine: {e.info.engine}</li>
+                            <li>Year of production: {e.info.yearOfProduction}</li>
+                            <li>Maxiumum speed: {e.info.maximumSpeed} km/h</li>
+                            <li>Type of drive: {e.info.typeOfDrive}</li>
                     </ul>
 
-                    <button className="button-1 button-1--dark all-cars__item__button">more info</button>
+                    <button className="button-1 button-1--dark all-cars__item__button" onClick={() => this.props.openModal(e.id)}>Rent</button>
                     </div>
                 ))}
             </div>
@@ -72,4 +73,8 @@ class AllCars extends React.Component{
     }
 }
 
-export default AllCars
+const mapDispatchToProps = (dispatch, props) => ({
+    openModal: (id) => dispatch({type: 'TOGGLE_MODAL', value: true, id})
+})
+
+export default connect(undefined, mapDispatchToProps)(AllCars)

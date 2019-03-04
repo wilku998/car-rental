@@ -1,0 +1,45 @@
+.contact{
+    margin-top: 15rem;
+
+    &__title{
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 2.4rem;
+        font-weight: 400;
+    }
+    &__content{
+        display: flex;
+        justify-content: space-between;
+
+        &__item{
+            width: 45%;
+            padding: 0 2rem;
+
+
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    &__map{
+        height: 30rem;
+        border-radius: .3rem;
+        background-color: orangered;
+        flex-grow: 1;
+    }
+
+    &__list{
+        font-size: 1.4rem;
+        &>li{
+            &:not(:last-child){
+                border-bottom: var(--line-dark);
+            }
+        }
+    }
+
+    &__p{
+        text-align: justify;
+        letter-spacing: 2.5;
+
+        margin-bottom: 3rem;
+    }
+}

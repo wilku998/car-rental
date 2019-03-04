@@ -5,45 +5,47 @@ import {mostPopularData} from '../data/data'
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 import isMobilePhone from 'validator/lib/isMobilePhone';
-
+const defaultState = {
+    days: 0,
+    price: 0,
+    discount: 0,
+    discountsVisible: false,
+    endDate: moment().add(1, 'days'),
+    startDate: moment(),
+    limitStart: moment(),
+    limitEnd: moment().add(60, 'days'),
+    submited: false,
+    invalidInfo: '',
+    form: {
+        name: {
+            value: '',
+            valid: false
+        },
+        surname: {
+            value: '',
+            valid: false
+        },
+        country: {
+            value: '',
+            valid: false
+        },
+        city: {
+            value: '',
+            valid: false
+        },
+        telephone: {
+            value: '',
+            valid: false
+        },
+    }
+}
 class Rent extends React.Component {
     constructor(props){
         super(props);
                  
 
         this.state={
-            days: 0,
-            price: 0,
-            discount: 0,
-            discountsVisible: false,
-            endDate: moment().add(1, 'days'),
-            startDate: moment(),
-            limitStart: moment(),
-            limitEnd: moment().add(60, 'days'),
-            submited: false,
-            invalidInfo: '',
-            form: {
-                name: {
-                    value: '',
-                    valid: false
-                },
-                surname: {
-                    value: '',
-                    valid: false
-                },
-                country: {
-                    value: '',
-                    valid: false
-                },
-                city: {
-                    value: '',
-                    valid: false
-                },
-                telephone: {
-                    value: '',
-                    valid: false
-                },
-            }
+            ...defaultState
         }
 
         this.closeModal=this.closeModal.bind(this);
@@ -105,7 +107,6 @@ class Rent extends React.Component {
     }
 
     closeModal(){
-        console.log(this.state.focusedInput)
         if(!this.state.focusedInput){
             this.props.closeModal()
         }
@@ -113,12 +114,8 @@ class Rent extends React.Component {
 
     onAfterOpen(){
         this.setState(() => ({
+            ...defaultState,
             price: this.props.car.info.priceForDay,
-            endDate: moment().add(1, 'days'),
-            startDate: moment(),
-            discountsVisible: false,
-            submited: false,
-            invalidInfo: ''
         }))
 
     }
@@ -177,15 +174,24 @@ class Rent extends React.Component {
                         <div className="rent__item rent__item--left">
                             <h2 className="rent__title">{this.props.car.name}</h2>
                             <span className="rent__version">{this.props.car.version}</span>
+
                             <div className="rent__list-container">
-                                {this.props.info.map((arr, i) =>(
-                                    <ul className="list rent__list" key={i}>
-                                        {arr.map(e =>
-                                            Object.keys(e).map(key => <li key={key}>{`${key}: ${e[key]}`}</li>)
-                                        )}
-                                    </ul>
-                                ))}
+                                <ul className="list rent__list">
+                                    <li>{`price for a day: ${this.props.car.info.priceForDay}$`}</li>
+                                    <li>{`engine: ${this.props.car.info.engine}`}</li>
+                                    <li>{`type of engine: ${this.props.car.info.typeOfEngine}`}</li>
+                                    <li>{`trunk capacity: ${this.props.car.info.trunkCapacity}L`}</li>
+                                    <li>{`type of drive: ${this.props.car.info.typeOfDrive}`}</li>
+                                </ul>
+                                <ul className="list rent__list">
+                                    <li>{`maximum speed: ${this.props.car.info.maximumSpeed} km/h`}</li>
+                                    <li>{`doors: ${this.props.car.info.doors}`}</li>
+                                    <li>{`persons: ${this.props.car.info.persons}`}</li>
+                                    <li>{`color: ${this.props.car.info.color}`}</li>
+                                    <li>{`year of production: ${this.props.car.info.yearOfProduction}`}</li>
+                                </ul>
                             </div>
+
                         </div>
                         <div className="rent__item rent__item--right">
                             <div className="rent__price">
@@ -256,13 +262,9 @@ class Rent extends React.Component {
 const mapStateToProps = (state) => {
     const car = mostPopularData.find(e => e.id === state.id);
 
-    const infoArr = Object.keys(car.info).map(key => ({[key]: car.info[key]}));
-    const half = Math.ceil(infoArr.length/2);
-
     return{
         modalIsOpen: state.modalIsOpen,
         car,
-        info: [infoArr.slice(0, half), infoArr.slice(half)],
     }
 }
 
