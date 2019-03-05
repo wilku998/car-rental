@@ -1,14 +1,18 @@
 .footer{
     padding: 10rem 0 7rem 0; 
     background-color: var(--color-grey-dark-1);
-    margin-top: 20rem;
+    margin-top: 15rem;
     clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
     color: var(--color-grey-light-1);;
 
+    @media only screen and (max-width: $bp-small){
+        margin-top: 10rem;
+    }
+    
     &__content{
         display: flex;
         justify-content: space-between;
-
+        padding: 0 4rem;
         &__item{
             padding-top: 1rem;
             width: 45%;

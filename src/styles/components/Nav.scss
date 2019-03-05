@@ -5,16 +5,30 @@
     border-bottom: var(--line);
     font-size: 1.8rem;
     opacity: .9;
+    @media only screen and (max-width: $bp-small){
+        border: none;
+    }
+
     &__list{
         display: flex;
         list-style: none;
         padding: .5rem 0;
         font-weight: 300;
+
+        @media only screen and (max-width: $bp-small){
+            flex-direction: column;
+        }
+
         & li {
             padding: 0 3rem;
             cursor: pointer;
             &:not(:last-child){
                 border-right: var(--line);
+            }
+
+            @media only screen and (max-width: $bp-small){
+                border-right: none !important;                
+                border-bottom: var(--line);
             }
         }
     }

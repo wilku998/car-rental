@@ -1,14 +1,24 @@
 .about{
     color: var(--color-grey-dark-1);
     margin-top: 15rem;
-    border-top: var(--line-dark);
-    border-bottom: var(--line-dark);
-    padding: 5rem 2rem;
+
+    @media only screen and (max-width: $bp-small){
+        margin-top: 10rem;
+    }
+
+    padding: 0 4rem;
     &__content{
+        padding: 5rem 0;
         display: flex;
-        //flex-wrap: wrap;
         justify-content: space-between;
-        
+        border-top: var(--line-dark);
+        border-bottom: var(--line-dark);
+
+        @media only screen and (max-width: $bp-small){
+            width: 100%;
+            border: none;
+            padding: 0;
+        }
     }
 
     &__title{
@@ -19,16 +29,49 @@
         font-weight: 400;
         letter-spacing: 7rem;
         margin-top: 7rem;
+
+        @media only screen and (max-width: $bp-medium){
+            letter-spacing: 9rem;
+            margin-top: 9rem;
+        }
+
+        @media only screen and (max-width: $bp-medium-2){
+            letter-spacing: 7rem;
+            margin-top: 7rem;
+        }
+
+        @media only screen and (max-width: $bp-small){
+            display: none;
+        }
+
         &-container{
             width: 10rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            
+            @media only screen and (max-width: $bp-small){
+                display: none;
+            }
         }
-
     }
+
+    &__title-2{
+        display: none;
+        @media only screen and (max-width: $bp-small){
+            display: block;
+        }
+    }
+
     &__item{
         width: 40%;
+        @media only screen and (max-width: $bp-medium-2){
+            width: 80%;
+        }
+
+        @media only screen and (max-width: $bp-small){
+            width: 100%;
+        }
 
         & p{
             text-align: justify;
@@ -58,6 +101,8 @@
         width: 40%;
         border-radius: .3rem;
         //box-shadow: 0 2rem 4rem rgba(black, .15);
-
+        @media only screen and (max-width: $bp-medium-2){
+            display: none;
+        }
     }
 }

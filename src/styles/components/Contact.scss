@@ -1,8 +1,14 @@
 .contact{
-    margin-top: 15rem;
-    padding: 5rem 2rem;
     border-top: var(--line-dark);
-    
+    padding: 5rem 0;
+    &-container{
+        margin-top: 15rem;
+        padding: 0 4rem;
+
+        @media only screen and (max-width: $bp-small){
+            margin-top: 10rem;
+        }
+    }
     &__title{
         text-align: center;
         margin-bottom: 1rem;
@@ -13,13 +19,25 @@
         display: flex;
         justify-content: space-between;
 
+        @media only screen and (max-width: $bp-medium-2){
+            flex-direction: column;
+        }
+
         &__item{
             width: 45%;
-            padding: 0 2rem;
-
-
+            padding: 0 0 0 2rem;
             display: flex;
             flex-direction: column;
+
+            &:first-of-type{
+                padding: 0 2rem 0 0;
+            }
+
+            @media only screen and (max-width: $bp-medium-2){
+                width: 100%;
+                padding: 0 !important;
+            }
+
         }
     }
     &__map{
@@ -36,6 +54,10 @@
                 border-bottom: var(--line-dark);
             }
         }
+
+        @media only screen and (max-width: $bp-medium-2){
+            margin-bottom: 3rem;
+        }
     }
 
     &__p{
@@ -43,5 +65,9 @@
         letter-spacing: 2.5;
 
         margin-bottom: 3rem;
+
+        @media only screen and (max-width: $bp-medium-2){
+            text-align: center;
+        }
     }
 }

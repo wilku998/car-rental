@@ -2,6 +2,7 @@ import React from 'react';
 
 const About = (props) => (
     <section className="about row">
+        <h1 className="title about__title-2">About</h1>
         <div className="about__content">
             <div className="about__item">
                 <h2 data-aos="fade-right">We rent car over whole Europe</h2>

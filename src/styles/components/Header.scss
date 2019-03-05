@@ -26,6 +26,10 @@
             opacity: .5;
             line-height: 1;
             animation: fade-header-title 1.5s;
+
+            @media only screen and (max-width: $bp-small){
+                font-size: 6rem;
+            }
         }
 
         & span{
@@ -34,6 +38,11 @@
             margin-bottom: 4rem;
             opacity: .7;
             animation: fade-header-span 1.5s;
+
+            
+            @media only screen and (max-width: $bp-small){
+                font-size: 1.4rem;
+            }
         }
 
         & button{
