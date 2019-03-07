@@ -39,6 +39,7 @@ const defaultState = {
         },
     }
 }
+
 class Rent extends React.Component {
     constructor(props){
         super(props);
@@ -174,8 +175,9 @@ class Rent extends React.Component {
                     contentLabel="Rent car"
                     className="rent"
                     onAfterOpen={() => this.onAfterOpen()}
-                    style={{overlay: {overflowY: 'scroll', zIndex: 1000, background: 'rgba(0,0,0,0.6)'}}}
+                    style={{overlay: {overflowY: 'scroll', zIndex: 1000, background: 'rgba(0,0,0,0.6)', animation: "opacity .5s"}}}
                     ref='modal'
+                    ariaHideApp={false}
                 >
 
                 <div className="rent__content" style={{background: `url(${this.props.car.image}) center/cover`}}>

@@ -37,7 +37,7 @@ class AllCars extends React.Component{
         return (
             <div className={`all-cars__content ${more ? `all-cars__content--more ${hideAnimation ? 'all-cars__content--more--hide' : ''}` : ''}`}>
                 {arr.map((e, i) => (
-                    <div key={i} className="all-cars__item" data-aos={`${!allVisible ? 'zoom-in' : ''}`}>
+                    <div key={i} className="all-cars__item">
                         <div className="all-cars__item__top" style={{background: `url(${e.image}) center/cover`}}></div>
                         <h3 className="all-cars__item__title">{e.name}</h3>
                         <ul className="all-cars__item__list">

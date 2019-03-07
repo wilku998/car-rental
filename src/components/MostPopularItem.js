@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const MostPopularItem = (props) => {
-    console.log(props.car.image)
     return(
         <div style={{...props.style, background: `url(${props.car.image}) center/cover`}} className={`most-popular__item most-popular__item--${props.num}`}>
             <div className="most-popular__item__info">

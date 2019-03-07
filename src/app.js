@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import AppRouter, { history } from './routers/AppRouter';
-import configureStore from './store/configureStore';
+import AOS from 'aos';
 import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import './styles/styles.scss';
 import 'aos/dist/aos.css';
-import AOS from 'aos';
+
+import configureStore from './store/configureStore';
+import Dashboard from './components/Dashboard';
 
 AOS.init({
   duration: 1000
@@ -18,20 +19,21 @@ AOS.init({
 const store = configureStore();
 const jsx = (
   <Provider store={store}>
-    <AppRouter />
+    <Dashboard />
   </Provider>
 );
 
 ReactDOM.render(jsx, document.getElementById('app'));
 
 function initMap(){
-  
+  /*
   let uluru = {lat: 51.8403400, lng: 16.5749400};
 
   let map = new google.maps.Map(
       document.querySelector('.contact__map'), {zoom: 10, center: uluru});
 
   let marker = new google.maps.Marker({position: uluru, map: map});
+  */
 
 }
 

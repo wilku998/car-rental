@@ -4,6 +4,7 @@
     justify-content: center;
     min-height: 100%;
     outline: none;
+    animation: opacity .5s;
     &__content{
         border-radius: .3rem;
         box-shadow: 0 2rem 4rem rgba(black, .2);
@@ -45,9 +46,11 @@
     &__version{
         display: block;
         text-align: center;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         margin-top: -.5rem;
         letter-spacing: .3rem;
+        padding-bottom: .5rem;
+        border-bottom: var(--line-dark);
     }
 
     &__item{
@@ -96,7 +99,8 @@
     &__list{
         & >li{
             display: flex;
-            padding: 2rem 0;
+            font-size: 1.4rem;
+            padding: 1.5rem 0;
             &:not(:last-child){
                 border-bottom: var(--line-dark);
             }
@@ -190,11 +194,11 @@
 
     &__info{
         font-size: 1.2rem;
-
         &--submited{
             margin-top: 1rem;
             color: rgba(var(--color-green), 1);
-            border-bottom: 1px solid rgba(var(--color-green), 1);
+            font-size: 1.4rem;
+            width: 20rem;
         }
 
         &--invalid{
