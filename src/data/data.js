@@ -61,6 +61,7 @@ export const allCarsData = [
         name: 'FORD MUSTANG VI',
         version: 'FASTBACK FACELIFTING',
         image: `${window.location.origin}/images/fordmustang.jpg`,
+        imageXS: `${window.location.origin}/images/fordmustang.jpg`,
         id: 'fordmustangvi',
         info: {
             priceForDay: 99,
@@ -79,6 +80,7 @@ export const allCarsData = [
         name: 'PORSCHE BOXSTER 981',
         version: 'SPYDER',
         image: `${window.location.origin}/images/porsheboxster.jpg`,
+        imageXS: `${window.location.origin}/images/porsheboxster-xs.jpg`,
         id: 'porsheboxster981',
         info: {
             priceForDay: 129,
@@ -98,6 +100,7 @@ export const allCarsData = [
         name: 'NISSAN GT-R',
         version: 'NISMO FACELIFTING',
         image: `${window.location.origin}/images/nissangtr.jpg`,
+        imageXS: `${window.location.origin}/images/nissangtr-xs.jpg`,
         id: 'nissangtr',
         info: {
             priceForDay: 149,
@@ -111,10 +114,12 @@ export const allCarsData = [
             color: 'black',
             yearOfProduction: 2016,
         },
-    },    {
+    },
+    {
         name: 'FORD MUSTANG VI',
         version: 'FASTBACK FACELIFTING',
         image: `${window.location.origin}/images/fordmustang.jpg`,
+        imageXS: `${window.location.origin}/images/fordmustang.jpg`,
         id: 'fordmustangvi',
         info: {
             priceForDay: 99,
@@ -133,6 +138,7 @@ export const allCarsData = [
         name: 'PORSCHE BOXSTER 981',
         version: 'SPYDER',
         image: `${window.location.origin}/images/porsheboxster.jpg`,
+        imageXS: `${window.location.origin}/images/porsheboxster-xs.jpg`,
         id: 'porsheboxster981',
         info: {
             priceForDay: 129,
@@ -152,6 +158,7 @@ export const allCarsData = [
         name: 'NISSAN GT-R',
         version: 'NISMO FACELIFTING',
         image: `${window.location.origin}/images/nissangtr.jpg`,
+        imageXS: `${window.location.origin}/images/nissangtr-xs.jpg`,
         id: 'nissangtr',
         info: {
             priceForDay: 149,
@@ -165,10 +172,12 @@ export const allCarsData = [
             color: 'black',
             yearOfProduction: 2016,
         },
-    },    {
+    },
+    {
         name: 'FORD MUSTANG VI',
         version: 'FASTBACK FACELIFTING',
         image: `${window.location.origin}/images/fordmustang.jpg`,
+        imageXS: `${window.location.origin}/images/fordmustang.jpg`,
         id: 'fordmustangvi',
         info: {
             priceForDay: 99,
@@ -187,6 +196,7 @@ export const allCarsData = [
         name: 'PORSCHE BOXSTER 981',
         version: 'SPYDER',
         image: `${window.location.origin}/images/porsheboxster.jpg`,
+        imageXS: `${window.location.origin}/images/porsheboxster-xs.jpg`,
         id: 'porsheboxster981',
         info: {
             priceForDay: 129,
@@ -206,6 +216,7 @@ export const allCarsData = [
         name: 'NISSAN GT-R',
         version: 'NISMO FACELIFTING',
         image: `${window.location.origin}/images/nissangtr.jpg`,
+        imageXS: `${window.location.origin}/images/nissangtr-xs.jpg`,
         id: 'nissangtr',
         info: {
             priceForDay: 149,

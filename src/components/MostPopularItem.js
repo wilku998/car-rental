@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const MostPopularItem = (props) => {
     return(
-        <div style={{...props.style, background: `url(${props.car.image}) center/cover`}} className={`most-popular__item most-popular__item--${props.num}`}>
+        <div data-src={props.car.image} style={{...props.style}} className={`b-lazy image most-popular__item most-popular__item--${props.num}`}>
             <div className="most-popular__item__info">
                 <h2 className="most-popular__item__info__name">{props.car.name}
                     <span className="most-popular__item__info__ver">{props.car.version}</span>                

@@ -1,6 +1,7 @@
 import React from 'react'
 import {allCarsData} from '../data/data';
 import {connect} from 'react-redux'
+import { bLazy } from '../app';
 
 class AllCars extends React.Component{
     constructor(props){
@@ -17,6 +18,7 @@ class AllCars extends React.Component{
                 allVisible,
             }), () => {
             document.querySelector('.all-cars__content--more').scrollIntoView({inline: 'start'});
+            bLazy.revalidate()
             })
         }else{
             this.setState(() => ({
@@ -33,12 +35,12 @@ class AllCars extends React.Component{
         }
     }
 
-    renderItems(arr, allVisible, hideAnimation, more){
+    renderItems(arr, hideAnimation, more){
         return (
             <div className={`all-cars__content ${more ? `all-cars__content--more ${hideAnimation ? 'all-cars__content--more--hide' : ''}` : ''}`}>
                 {arr.map((e, i) => (
                     <div key={i} className="all-cars__item">
-                        <div className="all-cars__item__top" style={{background: `url(${e.image}) center/cover`}}></div>
+                        <div className="b-lazy image all-cars__item__top" data-src={e.imageXS}></div>
                         <h3 className="all-cars__item__title">{e.name}</h3>
                         <ul className="all-cars__item__list">
                             <li>Price for a day: {e.info.priceForDay}$</li>
@@ -59,12 +61,12 @@ class AllCars extends React.Component{
             <div className="all-cars row">
                 <h1 id="all-cars__title" className="title">All cars</h1>
                 {this.renderItems(allCarsData.slice(0, this.props.windowWidth<=800 && this.props.windowWidth>600 ? 4 :3),
-                    this.state.allVisible, this.state.hideAnimation, false
+                    this.state.hideAnimation, false
                 )}
 
-                {this.state.allVisible &&
+                {this.state.allVisible && 
                     this.renderItems(allCarsData.slice(this.props.windowWidth<=800 && this.props.windowWidth>600 ? 4 :3),
-                        this.state.allVisible, this.state.hideAnimation, true
+                        this.state.hideAnimation, true
                     )
                 }
 

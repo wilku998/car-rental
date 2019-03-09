@@ -9,9 +9,9 @@ const About = (props) => (
                 <p data-aos="fade-right">Etiam nunc massa, eleifend sed posuere vitae, rutrum vitae erat. Curabitur velit magna, rhoncus quis arcu quis, laoreet dictum lorem. Etiam nunc massa, eleifend sed posuere vitae, rutrum vitae erat. Duis non magna imperdiet urna molestie scelerisque.</p>
                 <h2 data-aos="fade-right">Wide range off offerts</h2>
                 <p data-aos="fade-right">Duis non magna imperdiet urna molestie scelerisque. Etiam nunc massa, eleifend sed posuere vitae, rutrum vitae erat. Duis non magna imperdiet urna molestie scelerisque.</p>
-                <div className="about__item__photo" style={{background: 'url(./images/chevroletcamaro2013.jpg) center/cover'}}></div>
+                <div className="about__item__photo b-lazy image" data-src='./images/chevroletcamaro2013.jpg'></div>
             </div>
-            <div className="about__tall-photo" style={{background: 'url(./images/porshe-tall.jpeg) center/cover'}}>
+            <div className="about__tall-photo b-lazy image" data-src='./images/porshe-tall.jpeg'>
 
             </div>
             <div data-aos="fade-left" className="about__title-container">

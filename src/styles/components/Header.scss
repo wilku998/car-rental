@@ -2,6 +2,8 @@
     height: 100vh;
     clip-path: polygon(0 0, 100% 0, 100% 93%, 0 100%);
     position: relative;
+    background-attachment: fixed;
+    
     &::after{
         content: "";
         position: absolute;

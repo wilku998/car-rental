@@ -43,17 +43,18 @@
         }
 
         &--1{
+            background-image: linear-gradient(to right bottom, rgb(190, 145, 61), rgb(143, 107, 40));
             &::after{
                 background-color: rgba(black, .5);
             }
         }
 
         &--2{
-            //background-color: green;
+            background-image: linear-gradient(to right bottom, rgb(201, 201, 201), rgb(99, 99, 99));
         }
 
         &--3{
-            //background-color: purple;
+            background-image: linear-gradient(to right bottom, rgb(53, 53, 53), rgb(34, 34, 34));
         }
 
         &__info{

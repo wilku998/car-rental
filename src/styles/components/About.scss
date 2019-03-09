@@ -93,7 +93,7 @@
         &__photo{
             border-radius: .3rem;
             height: 30rem;
-            //box-shadow: 0 2rem 4rem rgba(black, .15);
+            background-image: linear-gradient(to right bottom, rgb(49, 104, 49), rgb(35, 75, 35));
         }
     }
 
@@ -101,6 +101,7 @@
         align-self: stretch;
         width: 40%;
         border-radius: .3rem;
+        background-image: linear-gradient(to right bottom, rgb(49, 104, 49), rgb(35, 75, 35));
         //box-shadow: 0 2rem 4rem rgba(black, .15);
         @media only screen and (max-width: $bp-medium-2){
             display: none;

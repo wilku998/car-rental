@@ -24,6 +24,12 @@ module.exports = (env) => {
                         options:{sourceMap: true}
                     }
                 ],
+            },{
+                test: /\.(png|jpg|gif)$/,
+                loader: 'file-loader',
+                options: {
+                  publicPath: 'images',
+                }
             }]
         },
         plugins:[

@@ -1,8 +1,7 @@
 import React from 'react';
 import Nav from './Nav';
-
 export const Header = ({ startLogout }) => (
-  <header className="header" style={{background: 'url(./images/header.jpg) center/cover fixed'}}>
+  <header className="header b-lazy image" data-src='./images/header.jpg' style={{}}>
     <Nav />
     <div className="header__content">
       <h2>CarRental.</h2>

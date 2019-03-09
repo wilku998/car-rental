@@ -1,13 +1,6 @@
 import React from 'react';
 import MostPopularItem from './MostPopularItem';
-import {mostPopularData} from '../data/data'
-
-document.addEventListener('DOMContentLoaded', () => {
-  window.addEventListener('scroll', () => {
-  
-    //console.log(document.documentElement.scrollTop);
-  });
-});
+import {mostPopularData} from '../data/data';
 
 class MostPopular extends React.Component{
   constructor(props){
@@ -22,7 +15,6 @@ class MostPopular extends React.Component{
   
   changePage(sign){
     const pos = this.state.pos + sign
-    console.log(pos)
     pos <=3 && pos>=1 &&
     this.setState(() => ({
       pos  
@@ -33,7 +25,6 @@ class MostPopular extends React.Component{
     const containerHeight = this.refs.container.offsetHeight;
     window.addEventListener('scroll', () => {
       let windowPosition = this.refs.container.getBoundingClientRect().y;
-      //console.log(windowPosition)
       if(windowPosition< containerHeight/2 && !this.state.animated){
         this.setState(() => ({
           pos: 2,
@@ -45,7 +36,6 @@ class MostPopular extends React.Component{
           animated: false
         }))
       }
-  
     });
 
     this.setState(() => ({

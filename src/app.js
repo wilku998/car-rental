@@ -7,9 +7,18 @@ import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import './styles/styles.scss';
 import 'aos/dist/aos.css';
-
 import configureStore from './store/configureStore';
 import Dashboard from './components/Dashboard';
+import Blazy from 'blazy'
+
+export const bLazy = new Blazy({
+  success: () => {
+    console.log('y')
+  },
+  fail: () => {
+    console.log('n')
+  }
+});
 
 AOS.init({
   duration: 1000

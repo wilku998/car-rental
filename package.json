@@ -20,6 +20,7 @@
     "babel-plugin-inline-react-svg": "^1.0.1",
     "babel-plugin-syntax-object-rest-spread": "^6.13.0",
     "babel-polyfill": "^6.26.0",
+    "blazy": "^1.8.2",
     "css-loader": "^1.0.1",
     "express": "^4.16.4",
     "live-server": "^1.2.1",
