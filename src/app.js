@@ -13,10 +13,8 @@ import Blazy from 'blazy'
 
 export const bLazy = new Blazy({
   success: () => {
-    console.log('y')
   },
   fail: () => {
-    console.log('n')
   }
 });
 
