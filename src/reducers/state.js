@@ -1,4 +1,4 @@
-export default (state = {modalIsOpen: true, id: 'fordmustangvi', windowWidth: 0}, action) => {
+export default (state = {modalIsOpen: false, id: 'fordmustangvi', windowWidth: 0}, action) => {
   switch (action.type) {
     case 'TOGGLE_MODAL':
       return {
