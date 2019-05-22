@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const Footer = (props) => (
     <div className="footer">

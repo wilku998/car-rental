@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {allCarsData} from '../data/data';
 import {connect} from 'react-redux'
 import { bLazy } from '../app';

@@ -1,10 +1,10 @@
-import React from 'react';
-import Modal from 'react-modal';
+import * as React from 'react';
+import * as Modal from 'react-modal';
 import { connect } from 'react-redux' 
 import {mostPopularData} from '../data/data'
 import { DateRangePicker } from 'react-dates';
-import moment from 'moment';
-import isMobilePhone from 'validator/lib/isMobilePhone';
+import * as moment from 'moment';
+import * as isMobilePhone from 'validator/lib/isMobilePhone';
 const defaultState = {
     days: 0,
     price: 0,

@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import Nav from './Nav';
-export const Header = ({ startLogout }) => (
+export const Header = () => (
   <header className="header b-lazy image" data-src='./images/header.jpg' style={{}}>
     <Nav />
     <div className="header__content">
