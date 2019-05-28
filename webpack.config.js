@@ -33,6 +33,9 @@ module.exports = (env) => {
 				}
 			]
 		},
+		resolve: {
+			extensions: [".ts", ".tsx", ".js"]
+		},
 		plugins: [
 			new MiniCssExtractPlugin({
 				filename: 'styles.css'

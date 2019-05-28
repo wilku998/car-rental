@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const About = (props) => (
+export default () => (
     <section className="about row">
         <h1 className="title about__title-2">About</h1>
         <div className="about__content">
@@ -19,6 +19,4 @@ const About = (props) => (
             </div>
         </div>
     </section>
-)
-
-export default About;
+);

@@ -1,13 +1,13 @@
 import * as React from 'react';
-import MostPopular from './MostPopular';
+import MostPopular from './MostPopular/MostPopular';
 import Header from './Header'
 import About from './About'
-import AllCars from './AllCars'
+import AllCars from './AllCars/AllCars'
 import Rent from './Rent'
 import Contact from './Contact'
 import Footer from './Footer'
 
-const Dashbaord = (props) => (
+const Dashboard = () => (
     <div>
         <Rent />
         <Header />
@@ -19,4 +19,4 @@ const Dashbaord = (props) => (
     </div>
 )
 
-export default Dashbaord;
+export default Dashboard;
