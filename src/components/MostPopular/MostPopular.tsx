@@ -17,22 +17,20 @@ const MostPopular = () => {
 		}
 	};
 
-  const increasePosition = () => changePosition(1);
-  const decreasePosition = () => changePosition(-1);
-  
-	const onScroll = () => {
-		const containerHeight = containerRef.current.offsetHeight;
+	const increasePosition = () => changePosition(1);
+	const decreasePosition = () => changePosition(-1);
 
-		let windowPosition = containerRef.current.getBoundingClientRect().y;
-		if (windowPosition < containerHeight / 2 && !animated) {
-			setPosition(2);
-			setAnimated(true);
-		} else if (animated && !(windowPosition - containerHeight < 0)) {
-			setPosition(1);
-			setAnimated(false);
+	const onScroll = () => {
+		if(!animated){
+			const containerHeight = containerRef.current.offsetHeight;
+			let windowPosition = containerRef.current.getBoundingClientRect().y;
+			if (windowPosition < containerHeight / 2) {
+				changePosition(1)
+				setAnimated(true);
+			}
 		}
-  };
-  
+	};
+
 	useEffect(() => {
 		window.addEventListener('scroll', onScroll);
 		return () => {
@@ -75,11 +73,9 @@ const MostPopular = () => {
 						key={i}
 						car={e}
 						num={i + 1}
-						style={{
-							transform: `${position === i + 1
-								? `translateY(-${i * 100}%)`
-								: `translateY(-${(position - 1) * 100}%)`}`
-						}}
+						transform={`${position === i + 1
+							? `translateY(-${i * 100}%)`
+							: `translateY(-${(position - 1) * 100}%)`}`}
 					/>
 				))}
 			</div>

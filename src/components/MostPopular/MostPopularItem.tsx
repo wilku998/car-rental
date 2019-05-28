@@ -7,11 +7,12 @@ import CarInterface from '../../interfaces/Car';
 interface MostPopularItemProps {
 	car: CarInterface;
 	num: number;
+	transform: string;
 	openModal: (id: string) => boolean;
 }
 
-const MostPopularItem = ({ car, num, openModal }: MostPopularItemProps) => {
-	const { name, version, image, info } = car;
+const MostPopularItem = ({ car, num, openModal, transform }: MostPopularItemProps) => {
+	const { name, version, image, info, id } = car;
 	const {
 		priceForDay,
 		engine,
@@ -24,8 +25,17 @@ const MostPopularItem = ({ car, num, openModal }: MostPopularItemProps) => {
 		color,
 		yearOfProduction
 	} = info;
+
+	const onRentClick = () => {
+		openModal(id);
+	};
+
 	return (
-		<div data-src={image} className={`b-lazy image most-popular__item most-popular__item--${num}`}>
+		<div
+			style={{ transform }}
+			data-src={image}
+			className={`b-lazy image most-popular__item most-popular__item--${num}`}
+		>
 			<div className="most-popular__item__info">
 				<h2 className="most-popular__item__info__name">
 					{name}
@@ -43,7 +53,7 @@ const MostPopularItem = ({ car, num, openModal }: MostPopularItemProps) => {
 					<li>{`color: ${color}`}</li>
 					<li>{`year of production: ${yearOfProduction}`}</li>
 				</ul>
-				<button className="button-1 most-popular__item__info__rent" onClick={openModal}>
+				<button className="button-1 most-popular__item__info__rent" onClick={onRentClick}>
 					<span>Rent</span>
 				</button>
 			</div>

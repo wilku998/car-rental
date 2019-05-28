@@ -3,7 +3,7 @@ import MostPopular from './MostPopular/MostPopular';
 import Header from './Header'
 import About from './About'
 import AllCars from './AllCars/AllCars'
-import Rent from './Rent'
+import Rent from './Rent/Rent'
 import Contact from './Contact'
 import Footer from './Footer'
 
