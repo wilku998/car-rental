@@ -4,7 +4,7 @@ import Header from './Header'
 import About from './About'
 import AllCars from './AllCars/AllCars'
 import Rent from './Rent/Rent'
-import Contact from './Contact'
+import Contact from './Contact/Contact'
 import Footer from './Footer'
 
 const Dashboard = () => (

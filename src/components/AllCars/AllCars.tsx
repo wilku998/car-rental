@@ -3,16 +3,17 @@ import { allCarsData } from '../../data/data';
 import { connect } from 'react-redux';
 import { bLazy } from '../../app';
 
-import CarInterface from '../../interfaces/Car';
+import CarI from '../../interfaces/Car';
 import AllCarsItem from './AllCarsItem';
 
-const { useState, useEffect } = React;
+const { useState, useEffect, useRef } = React;
 
-interface AllCarsProps {
+interface AllCarsPropsI {
 	windowWidth: number;
 }
 
-const AllCars = ({ windowWidth }: AllCarsProps) => {
+const AllCars = ({ windowWidth }: AllCarsPropsI) => {
+	const titleRef = useRef();
 	const [ hideAnimation, setHideAnimation ] = useState(false);
 	const [ allVisible, setAllVisible ] = useState(false);
 
@@ -21,10 +22,7 @@ const AllCars = ({ windowWidth }: AllCarsProps) => {
 
 	useEffect(
 		() => {
-			if (allVisible) {
-				document.querySelector('.all-cars__content--more').scrollIntoView({ inline: 'start' });
-				bLazy.revalidate();
-			}
+			bLazy.revalidate();
 		},
 		[ allVisible ]
 	);
@@ -32,7 +30,7 @@ const AllCars = ({ windowWidth }: AllCarsProps) => {
 	const toggleAllVisble = () => {
 		if (allVisible) {
 			setHideAnimation(true);
-			document.getElementById('all-cars__title').scrollIntoView(true);
+			titleRef.current.scrollIntoView(true);
 
 			setTimeout(() => {
 				setHideAnimation(false);
@@ -43,25 +41,25 @@ const AllCars = ({ windowWidth }: AllCarsProps) => {
 		}
 	};
 
-	const renderItems = (arr: Array<CarInterface>, hideAnimation: boolean, more: boolean) => {
+	const renderItems = (arr: Array<CarI>, more: boolean) => {
 		return (
 			<div
-				className={`all-cars__content ${more
-					? `all-cars__content--more ${hideAnimation ? 'all-cars__content--more--hide' : ''}`
+				className={`all-cars__content ${more ? `all-cars__content--more` : ''} ${hideAnimation
+					? 'all-cars__content--more--hide'
 					: ''}`}
 			>
-				{arr.map((e, i) => <AllCarsItem key={i} car={e} />)}
+				{arr.map((e, i) => <AllCarsItem scrollToCar={more && i === 0} key={i} car={e} />)}
 			</div>
 		);
 	};
 
 	return (
-		<div className="all-cars row">
-			<h1 id="all-cars__title" className="title">
+		<div id="all-cars" className="all-cars row">
+			<h1 id="all-cars__title" ref={titleRef} className="title">
 				All cars
 			</h1>
-			{renderItems(threeCars, hideAnimation, false)}
-			{allVisible && renderItems(restOfCars, hideAnimation, true)}
+			{renderItems(threeCars, false)}
+			{allVisible && renderItems(restOfCars, true)}
 			{!hideAnimation && (
 				<button className="all-cars__button button-2" onClick={toggleAllVisble}>
 					{allVisible ? 'Hide' : 'See more'}

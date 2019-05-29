@@ -2,16 +2,16 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { toggleModal } from '../../store/actions';
-import CarInterface from '../../interfaces/Car';
+import CarI from '../../interfaces/Car';
 
-interface MostPopularItemProps {
-	car: CarInterface;
+interface MostPopularItemPropsI {
+	car: CarI;
 	num: number;
 	transform: string;
 	openModal: (id: string) => boolean;
 }
 
-const MostPopularItem = ({ car, num, openModal, transform }: MostPopularItemProps) => {
+const MostPopularItem = ({ car, num, openModal, transform }: MostPopularItemPropsI) => {
 	const { name, version, image, info, id } = car;
 	const {
 		priceForDay,

@@ -121,7 +121,7 @@ export const allCarsData = [
 		version: 'FASTBACK FACELIFTING',
 		image: `${window.location.origin}/images/fordmustang.jpg`,
 		imageXS: `${window.location.origin}/images/fordmustang.jpg`,
-		id: 'fordmustangvi',
+		id: 'fordmustangvi-2',
 		info: {
 			priceForDay: 99,
 			engine: '5.0 TI-VCT 460KM 338KW',
@@ -140,7 +140,7 @@ export const allCarsData = [
 		version: 'SPYDER',
 		image: `${window.location.origin}/images/porsheboxster.jpg`,
 		imageXS: `${window.location.origin}/images/porsheboxster-xs.jpg`,
-		id: 'porsheboxster981',
+		id: 'porsheboxster981-2',
 		info: {
 			priceForDay: 129,
 			engine: '3.8 375KM 276KW',
@@ -159,7 +159,7 @@ export const allCarsData = [
 		version: 'NISMO FACELIFTING',
 		image: `${window.location.origin}/images/nissangtr.jpg`,
 		imageXS: `${window.location.origin}/images/nissangtr-xs.jpg`,
-		id: 'nissangtr',
+		id: 'nissangtr-2',
 		info: {
 			priceForDay: 149,
 			engine: '3.8 600KM 441KW',
@@ -178,7 +178,7 @@ export const allCarsData = [
 		version: 'FASTBACK FACELIFTING',
 		image: `${window.location.origin}/images/fordmustang.jpg`,
 		imageXS: `${window.location.origin}/images/fordmustang.jpg`,
-		id: 'fordmustangvi',
+		id: 'fordmustangvi-3',
 		info: {
 			priceForDay: 99,
 			engine: '5.0 TI-VCT 460KM 338KW',
@@ -197,7 +197,7 @@ export const allCarsData = [
 		version: 'SPYDER',
 		image: `${window.location.origin}/images/porsheboxster.jpg`,
 		imageXS: `${window.location.origin}/images/porsheboxster-xs.jpg`,
-		id: 'porsheboxster981',
+		id: 'porsheboxster981-3',
 		info: {
 			priceForDay: 129,
 			engine: '3.8 375KM 276KW',
@@ -216,7 +216,7 @@ export const allCarsData = [
 		version: 'NISMO FACELIFTING',
 		image: `${window.location.origin}/images/nissangtr.jpg`,
 		imageXS: `${window.location.origin}/images/nissangtr-xs.jpg`,
-		id: 'nissangtr',
+		id: 'nissangtr-3',
 		info: {
 			priceForDay: 149,
 			engine: '3.8 600KM 441KW',

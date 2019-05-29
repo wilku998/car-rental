@@ -4,21 +4,21 @@ import { connect } from 'react-redux';
 import { allCarsData } from '../../data/data';
 import { DateRangePicker } from 'react-dates';
 import * as moment from 'moment';
-import { isMobilePhone } from 'validator';
 
-import styles from './styles.ts';
+import RentForm from './RentForm';
+import styles from './styles';
 import { toggleModal } from '../../store/actions';
-import CarInterface from '../../interfaces/Car';
+import CarI from '../../interfaces/Car';
 
 const { useState } = React;
 
-interface RentProps {
-	car: CarInterface;
+interface RentPropsI {
+	car: CarI;
 	modalIsOpen: boolean;
 	closeModal: () => boolean;
 }
 
-const Rent = ({ car, modalIsOpen, closeModal }: RentProps) => {
+const Rent = ({ car, modalIsOpen, closeModal }: RentPropsI) => {
 	const { name, version, image, info } = car;
 	const {
 		priceForDay,
@@ -42,35 +42,9 @@ const Rent = ({ car, modalIsOpen, closeModal }: RentProps) => {
 	});
 	const [ price, setPrice ] = useState({ price: priceForDay, discount: 0 });
 	const [ discountsVisible, setDiscountsVisible ] = useState(false);
-	const [ submited, setSubmited ] = useState(false);
 	const [ focusedInput, setFocusedInput ] = useState(undefined);
-	const [ invalidInfo, setInvalidInfo ] = useState('');
-	const [ form, setFormValues ] = useState({
-		name: {
-			value: '',
-			valid: false
-		},
-		surname: {
-			value: '',
-			valid: false
-		},
-		country: {
-			value: '',
-			valid: false
-		},
-		city: {
-			value: '',
-			valid: false
-		},
-		telephone: {
-			value: '',
-			valid: false
-		}
-	});
 
-	const changePrice = (days: number) => {
-		// 1-3 4-7 8-14 15-30 31-60
-		// 0%  15% 30%  45%   60%
+	const changePrice = (days: number): void => {
 		let discount;
 		if (days >= 31) {
 			discount = 0.6;
@@ -89,23 +63,22 @@ const Rent = ({ car, modalIsOpen, closeModal }: RentProps) => {
 		setPrice({ price, discount });
 	};
 
-	const toggleDiscounts = () => {
+	const toggleDiscounts = (): void => {
 		setDiscountsVisible(!discountsVisible);
 	};
 
-	const setDates = ({ startDate, endDate }) => {
-		console.log({ startDate });
+	const setDates = ({ startDate, endDate }: { startDate: any; endDate: any }): void => {
 		setCalendarSelectedDays({ startDate, endDate });
 
 		if (startDate && endDate) {
 			const rangeOfDays = moment.duration(endDate.diff(startDate));
-			changePrice(parseInt(rangeOfDays.asDays()));
+			changePrice(rangeOfDays.asDays());
 		} else {
 			setPrice({ price: 0, discount: 0 });
 		}
 	};
 
-	const isOutsideRange = (day) => {
+	const isOutsideRange = (day: any): boolean => {
 		if (focusedInput === 'endDate') {
 			return (
 				moment.max(day, limitEnd).format() === day.format() ||
@@ -116,43 +89,6 @@ const Rent = ({ car, modalIsOpen, closeModal }: RentProps) => {
 				moment.max(day, limitEnd).format() === day.format() ||
 				moment.min(day, limitStart).format() === day.format()
 			);
-		}
-	};
-
-	const onFormChange = (e) => {
-		const { value, name } = e.target;
-		setFormValues({
-			...form,
-			[name]: {
-				value,
-				valid: name === 'telephone' ? isMobilePhone(value) : value.length <= 20 && value.length >= 3
-			}
-		});
-	};
-
-	const onSubmit = (e) => {
-		e.preventDefault();
-		let invalidInfo = '';
-
-		if (!submited) {
-			let validation = true;
-			Object.keys(form).forEach((key) => {
-				if (!form[key].valid) {
-					validation = false;
-					invalidInfo = `${key} is invalid`;
-				}
-				if (form[key].value === '') {
-					invalidInfo = `${key} is required`;
-				}
-			});
-
-			if (price.price < 1) {
-				invalidInfo = 'Set correctly range of days!';
-				validation = false;
-			}
-
-			setSubmited(validation);
-			setInvalidInfo(invalidInfo);
 		}
 	};
 
@@ -203,7 +139,6 @@ const Rent = ({ car, modalIsOpen, closeModal }: RentProps) => {
 								startDateId="3623"
 								small={true}
 								numberOfMonths={1}
-								//orientation='vertical'
 							/>
 						</label>
 						<div className="rent__price__discount">
@@ -223,37 +158,7 @@ const Rent = ({ car, modalIsOpen, closeModal }: RentProps) => {
 							</div>
 						)}
 					</div>
-					<form className="rent__form" onSubmit={(e) => onSubmit(e)}>
-						{Object.keys(form).map((key) => (
-							<label key={key}>
-								<span>{key}</span>
-								<input
-									className={`input ${form[key].value !== ''
-										? form[key].valid ? 'input--valid' : 'input--invalid'
-										: ''}`}
-									value={form[key].value}
-									name={key}
-									onChange={onFormChange}
-									type="text"
-								/>
-							</label>
-						))}
-
-						<div className="rent__footer">
-							{!submited ? (
-								<button className="button-1 button-1--small button-1--dark rent__form__btn">
-									Rent
-								</button>
-							) : (
-								<span className="rent__info rent__info--submited">
-									Form sent. Our consultant will contact you within 24 hours.
-								</span>
-							)}
-							{invalidInfo !== '' && (
-								<span className="rent__info rent__info--invalid">{invalidInfo}</span>
-							)}
-						</div>
-					</form>
+					<RentForm price={price} />
 				</div>
 			</div>
 		</Modal>

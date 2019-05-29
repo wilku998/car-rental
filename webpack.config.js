@@ -1,5 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+require('dotenv').config({ path: '.env.all' });
 
 module.exports = (env) => {
 	const isProduction = env === 'production';
@@ -39,6 +41,9 @@ module.exports = (env) => {
 		plugins: [
 			new MiniCssExtractPlugin({
 				filename: 'styles.css'
+			}),
+			new webpack.DefinePlugin({
+				'process.env.GOOGLE_API_KEY': JSON.stringify(process.env.GOOGLE_API_KEY),
 			})
 		],
 		devtool: isProduction ? 'source-map' : 'inline-source-map',

@@ -15,6 +15,9 @@ import './styles/styles.scss';
 
 export const bLazy = new Blazy({
 	success: () => { },
+	error: (ele, msg) => {
+		console.log({ele, msg})
+	}
 });
 
 aos.init({
@@ -36,15 +39,6 @@ const app = (
 );
 
 render(app, document.getElementById('app'));
-
-function initMap() {
-	let uluru = {lat: 51.8403400, lng: 16.5749400};
-	let map = new google.maps.Map(
-	    document.querySelector('.contact__map'), {zoom: 10, center: uluru});
-	let marker = new google.maps.Marker({position: uluru, map: map});
-}
-
-window.initMap = initMap;
 
 
 

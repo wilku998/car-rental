@@ -15,14 +15,8 @@ export default {
         bottom: 0,
         border: 'none',
         maxHeight: '100%',
-        overflow: 'overlay',
-        padding: '2rem',
+        overflow: 'visible',
+        padding: '2rem 2rem 0 2rem',
         background: 'none',
-        after: {
-            content: '',
-            height: '20px',
-            background: 'red',
-            width: '100%'
-        }
     }
 }

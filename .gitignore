@@ -4,3 +4,4 @@ public/dist/
 .env.development
 git.txt
 typescript.ts
+.env.all

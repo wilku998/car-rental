@@ -1,4 +1,4 @@
-export default interface Car {
+export default interface CarI {
     name: string,
     version: string,
     image: string,

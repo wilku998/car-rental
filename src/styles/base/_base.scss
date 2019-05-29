@@ -32,6 +32,11 @@ button:disabled {
   cursor: default;
 }
 
+a, a:visited{
+  color: inherit;
+  text-decoration: none;
+};
+
 .is-active {
   font-weight: bold;
 }

@@ -1,7 +1,8 @@
 import * as React from 'react';
+import Map from './Map';
 
 export default () => (
-	<section className="contact-container row">
+	<section id="contact" className="contact-container row">
 		<div className="contact">
 			<h1 className="title">Contact</h1>
 			<div className="contact__content">
@@ -27,7 +28,7 @@ export default () => (
 				</div>
 				<div data-aos="fade-left" className="contact__content__item">
 					<h3 className="contact__title">Main headquarters of company</h3>
-					<div className="contact__map" />
+					<div className="contact__map"><Map /></div>
 				</div>
 			</div>
 		</div>

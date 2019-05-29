@@ -20,26 +20,25 @@ const MostPopular = () => {
 	const increasePosition = () => changePosition(1);
 	const decreasePosition = () => changePosition(-1);
 
+	const removeOnScroll = () => window.removeEventListener('scroll', onScroll);
 	const onScroll = () => {
-		if(!animated){
-			const containerHeight = containerRef.current.offsetHeight;
-			let windowPosition = containerRef.current.getBoundingClientRect().y;
-			if (windowPosition < containerHeight / 2) {
-				changePosition(1)
-				setAnimated(true);
-			}
+		const containerHeight = containerRef.current.offsetHeight;
+		let windowPosition = containerRef.current.getBoundingClientRect().y;
+		if (windowPosition < containerHeight / 2) {
+			changePosition(1);
+			removeOnScroll();
 		}
 	};
 
 	useEffect(() => {
 		window.addEventListener('scroll', onScroll);
 		return () => {
-			window.removeEventListener('scroll', onScroll);
+			removeOnScroll();
 		};
 	}, []);
 
 	return (
-		<section className="most-popular-container" ref={containerRef}>
+		<section id="most-popular" className="most-popular-container" ref={containerRef}>
 			<h1 className="title most-popular__title">Most popular cars</h1>
 			<div className="most-popular" ref={componentRef}>
 				<div className="most-popular__pos">

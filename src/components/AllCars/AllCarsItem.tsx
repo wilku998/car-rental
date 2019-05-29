@@ -1,15 +1,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import CarInterface from '../../interfaces/Car'
+import CarI from '../../interfaces/Car';
 import { toggleModal } from '../../store/actions';
 
-interface AllCarsItemProps {
-	car: CarInterface;
+const { useLayoutEffect, useRef } = React;
+
+interface AllCarsItemPropsI {
+	car: CarI;
 	openModal: (id: string) => boolean;
+	scrollToCar: boolean;
 }
 
-const AllCarsItem = ({ car, openModal }: AllCarsItemProps) => {
+const AllCarsItem = ({ car, openModal, scrollToCar }: AllCarsItemPropsI) => {
+	const carRef = useRef();
 	const { imageXS, info, id, name } = car;
 	const { priceForDay, engine, yearOfProduction, maximumSpeed, typeOfDrive } = info;
 
@@ -17,8 +21,16 @@ const AllCarsItem = ({ car, openModal }: AllCarsItemProps) => {
 		openModal(id);
 	};
 
+	useLayoutEffect(() => {
+		if (scrollToCar) {
+			setTimeout(() => {
+				carRef.current.scrollIntoView(true);
+			}, 1000);
+		}
+	});
+
 	return (
-		<div className="all-cars__item">
+		<div ref={carRef} className="all-cars__item">
 			<div className="b-lazy image all-cars__item__top" data-src={imageXS} />
 			<h3 className="all-cars__item__title">{name}</h3>
 			<ul className="all-cars__item__list">
