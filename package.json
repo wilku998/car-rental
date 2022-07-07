@@ -16,7 +16,7 @@
     "blazy": "^1.8.2",
     "css-loader": "^1.0.1",
     "express": "^4.16.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.8.3",
     "react-dates": "^19.0.4",
     "react-dom": "^16.8.3",
